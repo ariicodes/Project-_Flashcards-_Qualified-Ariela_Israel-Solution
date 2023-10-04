@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Breadcrumb from './Breadcrumb';
+import { createDeck } from '../../utils/api';
 
-function CreateDeck({ history, decks }) {
+function CreateDeck({ history }) {
 	const [deckName, setDeckName] = useState('');
 	const [deckDescription, setDeckDescription] = useState('');
 	const [isDeckRendered, setIsDeckRendered] = useState(false);
+
+	useEffect(() => {
+		return () => {};
+	}, []);
 
 	const submitDeckHandler = async e => {
 		e.preventDefault();
 
 		try {
-			const newDeckId = decks.length + 1;
-
 			const newDeck = {
-				id: newDeckId,
 				name: deckName,
 				description: deckDescription,
 			};
 
-			decks.push(newDeck);
+			const createdDeck = await createDeck(newDeck);
 
-			history.push(`/decks/${newDeckId}`);
+			history.push(`/decks/${createdDeck.id}`);
+			setIsDeckRendered(true);
 
 			setDeckName('');
 			setDeckDescription('');
-			setIsDeckRendered(true);
 		} catch (error) {
 			console.error('Error adding new deck:', error);
 		}

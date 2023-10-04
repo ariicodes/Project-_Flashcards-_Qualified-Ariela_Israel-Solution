@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from './Header';
 import NotFound from './NotFound';
-import Home from '../components/Deck/Home';
+import Home from '../views/Home';
 import axios from 'axios';
-import Study from '../components/Card/Study';
-import CreateDeck from '../components/Deck/CreateDeck';
-import Deck from '../components/Deck/Deck';
+import Study from '../views/Study';
+import CreateDeck from '../views/CreateDeck';
+import Deck from '../views/Deck/Deck';
 
 function Layout() {
 	const [cards, setCards] = useState([]);
 	const [decks, setDecks] = useState([]);
-	const history = useHistory()
+	const history = useHistory();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -30,13 +30,19 @@ function Layout() {
 	}, []);
 
 	const handleDeckDelete = async deckId => {
-		window.confirm('Delete this deck?\n\nYou will not be able to recover it.');
+		const confirmed = window.confirm(
+			'Delete this deck?\n\nYou will not be able to recover it.'
+		);
 
-		try {
-			await axios.delete(`http://localhost:8080/decks/${deckId}`);
-			setDecks(prevDecks => prevDecks.filter(deck => deck.id !== deckId));
-		} catch (error) {
-			console.error('Error deleting deck:', error);
+		if (confirmed) {
+			try {
+				await axios.delete(`http://localhost:8080/decks/${deckId}`);
+				setDecks(prevDecks => prevDecks.filter(deck => deck.id !== deckId));
+				// Use history.push to navigate back to the Home page
+				history.push('/');
+			} catch (error) {
+				console.error('Error deleting deck:', error);
+			}
 		}
 	};
 
@@ -56,7 +62,7 @@ function Layout() {
 						/>
 					</Route>
 					<Route path='/decks/:deckId'>
-						<Deck />
+						<Deck handleDeckDelete={handleDeckDelete} />
 					</Route>
 					<Route path='/'>
 						<Home

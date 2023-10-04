@@ -30,7 +30,7 @@ function DeckList({ cards, decks, handleDeckDelete }) {
 						</Link>
 					</div>
 					<button
-						onClick={handleDeckDelete}
+						onClick={() => handleDeckDelete(deck.id)}
 						className='btn btn-danger'
 					>
 						Delete

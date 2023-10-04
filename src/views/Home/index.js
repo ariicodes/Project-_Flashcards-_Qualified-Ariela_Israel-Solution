@@ -1,5 +1,5 @@
 import React from 'react';
-import DeckList from './DeckList';
+import DeckList from '../Deck/DeckList';
 import { Link } from 'react-router-dom';
 
 function Home({ decks, cards, handleDeckDelete }) {

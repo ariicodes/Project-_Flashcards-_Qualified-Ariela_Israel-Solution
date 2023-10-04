@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { readDeck } from '../../utils/api';
-import Breadcrumb from './Breadcrumb';
+import Breadcrumb from '../CreateDeck/Breadcrumb';
 import CardList from './CardList';
 
-function Deck() {
+function Deck({ handleDeckDelete }) {
 	const { deckId } = useParams();
 	const [deck, setDeck] = useState({});
 	const [cards, setCards] = useState([]);
@@ -14,7 +14,6 @@ function Deck() {
 			.then(res => {
 				setDeck(res);
 				setCards(res.cards);
-                console.log(res)
 			})
 			.catch(err => console.log(err));
 	}, [deckId]);
@@ -31,10 +30,15 @@ function Deck() {
 						<button className='btn btn-primary btn-1'>Study</button>
 						<button className='btn btn-primary'>Add Cards</button>
 					</div>
-					<button className='btn btn-danger'>Delete</button>
+					<button
+						onClick={() => handleDeckDelete(deck.id)}
+						className='btn btn-danger'
+					>
+						Delete
+					</button>
 				</div>
 			</div>
-            <CardList cards={cards} />
+			<CardList cards={cards} />
 		</>
 	);
 }
