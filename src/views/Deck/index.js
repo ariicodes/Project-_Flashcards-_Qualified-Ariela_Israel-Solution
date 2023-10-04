@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Switch, Route, useParams } from 'react-router-dom';
 import { readDeck } from '../../utils/api';
-import Breadcrumb from '../../common/TwoItemBreadcrumb';
-import CardList from './CardList';
+import DeckContent from './DeckContent';
+import EditDeck from '../EditDeck';
 
 function Deck({ handleDeckDelete }) {
 	const { deckId } = useParams();
@@ -20,25 +20,19 @@ function Deck({ handleDeckDelete }) {
 
 	return (
 		<>
-			<Breadcrumb deckName={deck.name} />
-			<div className='mb-4'>
-				<h4>{deck.name}</h4>
-				<p>{deck.description}</p>
-				<div className='d-flex justify-content-between'>
-					<div className='d-flex'>
-						<button className='btn btn-secondary btn-1'>Edit</button>
-						<button className='btn btn-primary btn-1'>Study</button>
-						<button className='btn btn-primary'>Add Cards</button>
-					</div>
-					<button
-						onClick={() => handleDeckDelete(deck.id)}
-						className='btn btn-danger'
-					>
-						Delete
-					</button>
-				</div>
-			</div>
-			<CardList cards={cards} />
+			<Switch>
+				<Route path='/decks/:deckId/edit'>
+					<EditDeck />
+				</Route>
+				<Route>
+					<DeckContent
+						deck={deck}
+						cards={cards}
+						deckId={deckId}
+						handleDeckDelete={handleDeckDelete}
+					/>
+				</Route>
+			</Switch>
 		</>
 	);
 }
