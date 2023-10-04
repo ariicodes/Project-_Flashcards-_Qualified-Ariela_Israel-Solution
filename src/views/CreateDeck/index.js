@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Breadcrumb from './Breadcrumb';
+import Breadcrumb from '../../common/TwoItemBreadcrumb';
 import { createDeck } from '../../utils/api';
 
 function CreateDeck({ history }) {

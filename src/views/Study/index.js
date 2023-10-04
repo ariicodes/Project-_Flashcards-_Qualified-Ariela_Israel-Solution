@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { readDeck } from '../../utils/api';
-import Breadcrumb from './Breadcrumb';
+import Breadcrumb from '../../common/ThreeItemBreadcrumb';
 import StudyContent from './StudyContent';
 import NotEnoughCards from './NotEnoughCards';
 
@@ -48,6 +48,7 @@ function Study() {
 			<Breadcrumb
 				deckId={deckId}
 				deckName={deck.name}
+				view={'Study'}
 			/>
 			<h1>Study: {deck.name}</h1>
 			{cards.length <= 2 ? (

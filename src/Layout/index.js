@@ -6,7 +6,7 @@ import Home from '../views/Home';
 import axios from 'axios';
 import Study from '../views/Study';
 import CreateDeck from '../views/CreateDeck';
-import Deck from '../views/Deck/Deck';
+import Deck from '../views/Deck';
 
 function Layout() {
 	const [cards, setCards] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { readDeck } from '../../utils/api';
-import Breadcrumb from '../CreateDeck/Breadcrumb';
+import Breadcrumb from '../../common/TwoItemBreadcrumb';
 import CardList from './CardList';
 
 function Deck({ handleDeckDelete }) {
