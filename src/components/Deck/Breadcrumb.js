@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Breadcrumb({ deckName, isDeckRendered }) {
+function Breadcrumb({ deckName }) {
 	return (
 		<nav aria-label='breadcrumb'>
 			<ol className='breadcrumb'>
@@ -12,7 +12,7 @@ function Breadcrumb({ deckName, isDeckRendered }) {
 					className='breadcrumb-item active'
 					aria-current='page'
 				>
-				{isDeckRendered ? deckName : 'Create Deck'}
+				{deckName}
 				</li>
 			</ol>
 		</nav>

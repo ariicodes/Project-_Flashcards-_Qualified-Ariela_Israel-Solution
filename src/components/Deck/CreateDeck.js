@@ -32,10 +32,7 @@ function CreateDeck({ history, decks }) {
 
 	return (
 		<>
-			<Breadcrumb
-				deckName={deckName}
-				isDeckRendered={isDeckRendered}
-			/>
+			<Breadcrumb deckName={isDeckRendered ? deckName : 'Create Deck'} />
 			<div>
 				<h1>Create Deck</h1>
 				<form onSubmit={submitDeckHandler}>

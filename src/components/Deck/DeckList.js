@@ -17,7 +17,7 @@ function DeckList({ cards, decks, handleDeckDelete }) {
 				<div className='d-flex justify-content-between'>
 					<div>
 						<Link
-							to='#'
+							to={`/decks/${deck.id}`}
 							className='btn btn-secondary btn-1'
 						>
 							View
