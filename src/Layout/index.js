@@ -38,7 +38,6 @@ function Layout() {
 			try {
 				await axios.delete(`http://localhost:8080/decks/${deckId}`);
 				setDecks(prevDecks => prevDecks.filter(deck => deck.id !== deckId));
-				// Use history.push to navigate back to the Home page
 				history.push('/');
 			} catch (error) {
 				console.error('Error deleting deck:', error);

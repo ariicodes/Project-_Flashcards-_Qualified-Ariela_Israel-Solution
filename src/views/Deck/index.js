@@ -28,6 +28,7 @@ function Deck({ handleDeckDelete }) {
 					<DeckContent
 						deck={deck}
 						cards={cards}
+						setCards={setCards}
 						deckId={deckId}
 						handleDeckDelete={handleDeckDelete}
 					/>

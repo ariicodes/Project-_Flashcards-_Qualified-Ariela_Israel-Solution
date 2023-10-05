@@ -3,7 +3,7 @@ import TwoItemBreadcrumb from '../../common/TwoItemBreadcrumb';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import CardList from './CardList';
 
-function DeckContent({ deck, cards, deckId, handleDeckDelete }) {
+function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 	return (
 		<>
 			<TwoItemBreadcrumb deckName={deck.name} />
@@ -29,7 +29,7 @@ function DeckContent({ deck, cards, deckId, handleDeckDelete }) {
 					</button>
 				</div>
 			</div>
-			<CardList cards={cards} />
+			<CardList cards={cards} setCards={setCards} />
 		</>
 	);
 }
