@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Breadcrumb from '../../common/TwoItemBreadcrumb';
 import { createDeck } from '../../utils/api';
 
-function CreateDeck({ history }) {
+function CreateDeck({ history, handleDeckCreation }) {
 	const [deckName, setDeckName] = useState('');
 	const [deckDescription, setDeckDescription] = useState('');
 	const [isDeckRendered, setIsDeckRendered] = useState(false);
@@ -21,6 +21,8 @@ function CreateDeck({ history }) {
 			};
 
 			const createdDeck = await createDeck(newDeck);
+
+			handleDeckCreation(createDeck)
 
 			history.push(`/decks/${createdDeck.id}`);
 			setIsDeckRendered(true);

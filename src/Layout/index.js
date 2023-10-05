@@ -45,6 +45,10 @@ function Layout() {
 		}
 	};
 
+	const handleDeckCreation = newDeck => {
+		setDecks(prevDecks => [...prevDecks, newDeck]);
+	};
+
 	return (
 		<>
 			<Header />
@@ -58,6 +62,7 @@ function Layout() {
 						<CreateDeck
 							history={history}
 							decks={decks}
+							handleDeckCreation={handleDeckCreation}
 						/>
 					</Route>
 					<Route path='/decks/:deckId'>
