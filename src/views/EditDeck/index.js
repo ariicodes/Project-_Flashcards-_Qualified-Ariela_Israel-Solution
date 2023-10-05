@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { readDeck, updateDeck } from '../../utils/api';
 import ThreeItemBreadcrumb from '../../common/ThreeItemBreadcrumb';
 
-function EditDeck() {
+function EditDeck({ handleDeckEdit }) {
 	const { deckId } = useParams();
 	const history = useHistory();
 	const [deck, setDeck] = useState({ name: '', description: '' });
@@ -24,7 +24,8 @@ function EditDeck() {
 	const editDeckHandler = async e => {
 		e.preventDefault();
 		try {
-			await updateDeck(deckId, deck);
+			await updateDeck(deck);
+			handleDeckEdit();
 			history.push(`/decks/${deckId}`);
 		} catch (error) {
 			console.error('Error editing deck:', error);

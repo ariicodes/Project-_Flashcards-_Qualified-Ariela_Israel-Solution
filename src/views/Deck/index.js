@@ -18,11 +18,19 @@ function Deck({ handleDeckDelete }) {
 			.catch(err => console.log(err));
 	}, [deckId]);
 
+	const handleDeckEdit = () => {
+		readDeck(deckId)
+			.then(res => {
+				setDeck(res);
+			})
+			.catch(err => console.log(err));
+	};
+
 	return (
 		<>
 			<Switch>
 				<Route path='/decks/:deckId/edit'>
-					<EditDeck />
+					<EditDeck handleDeckEdit={handleDeckEdit} />
 				</Route>
 				<Route>
 					<DeckContent
