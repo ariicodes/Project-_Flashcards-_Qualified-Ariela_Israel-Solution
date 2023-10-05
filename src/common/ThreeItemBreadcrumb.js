@@ -1,15 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function ThreeItemBreadcrumb({ deckId, deckName, view }) {
+	const handleReload = () => {
+		window.location.reload();
+	};
+
 	return (
 		<nav aria-label='breadcrumb'>
 			<ol className='breadcrumb'>
 				<li className='breadcrumb-item'>
-					<Link to='/'>Home</Link>
+					<a
+						href='/'
+						onClick={handleReload}
+					>
+						Home
+					</a>
 				</li>
 				<li className='breadcrumb-item'>
-					<Link to={`/decks/${deckId}`}>{deckName}</Link>
+					<a href={`/decks/${deckId}`} onClick={handleReload}>{deckName}</a>
 				</li>
 				<li
 					className='breadcrumb-item active'

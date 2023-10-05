@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { readDeck, updateDeck } from '../../utils/api';
 import ThreeItemBreadcrumb from '../../common/ThreeItemBreadcrumb';
 
@@ -64,7 +64,12 @@ function EditDeck({ handleDeckEdit }) {
 					></textarea>
 				</div>
 				<div>
-					<button className='btn btn-secondary btn-1'>Cancel</button>
+					<Link
+						to={`/decks/${deckId}`}
+						className='btn btn-secondary btn-1'
+					>
+						Cancel
+					</Link>
 					<button
 						type='submit'
 						className='btn btn-primary'

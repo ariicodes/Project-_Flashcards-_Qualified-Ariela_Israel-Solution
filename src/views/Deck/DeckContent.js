@@ -24,7 +24,12 @@ function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 						>
 							Study
 						</Link>
-						<button className='btn btn-primary'>Add Cards</button>
+						<Link
+							to={`/decks/${deck.id}/cards/new`}
+							className='btn btn-primary'
+						>
+							Add Cards
+						</Link>
 					</div>
 					<button
 						onClick={() => handleDeckDelete(deck.id)}
