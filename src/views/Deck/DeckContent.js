@@ -18,7 +18,12 @@ function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 						>
 							Edit
 						</Link>
-						<button className='btn btn-primary btn-1'>Study</button>
+						<Link
+							to={`/decks/${deck.id}/study`}
+							className='btn btn-primary btn-1'
+						>
+							Study
+						</Link>
 						<button className='btn btn-primary'>Add Cards</button>
 					</div>
 					<button
@@ -29,7 +34,10 @@ function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 					</button>
 				</div>
 			</div>
-			<CardList cards={cards} setCards={setCards} />
+			<CardList
+				cards={cards}
+				setCards={setCards}
+			/>
 		</>
 	);
 }
