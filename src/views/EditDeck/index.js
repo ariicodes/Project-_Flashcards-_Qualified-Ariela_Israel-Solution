@@ -27,8 +27,8 @@ function EditDeck({ handleDeckEdit }) {
 			await updateDeck(deck);
 			handleDeckEdit();
 			history.push(`/decks/${deckId}`);
-		} catch (error) {
-			console.error('Error editing deck:', error);
+		} catch (err) {
+			console.error('Error editing deck:', err);
 		}
 	};
 

@@ -1,24 +1,26 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function CardList({ cards, setCards, deckId }) {
-	const handleCardDelete = async cardId => {
-		const confirmed = window.confirm(
-			'Delete this card?\n\nYou will not be able to recover it.'
-		);
+const handleCardDelete = async cardId => {
+	const confirmed = window.confirm(
+		'Delete this card?\n\nYou will not be able to recover it.'
+	);
 
-		if (!confirmed) {
-			return;
-		}
+	if (!confirmed) {
+		return;
+	}
 
-		try {
-			await axios.delete(`http://localhost:8080/cards/${cardId}`);
-			setCards(prevCards => prevCards.filter(card => card.id !== cardId));
-		} catch (error) {
-			console.error('Error deleting card', error);
-		}
-	};
+	try {
+		await fetch(`http://localhost:8080/cards/${cardId}`, {
+			method: 'DELETE',
+		});
+		setCards(prevCards => prevCards.filter(card => card.id !== cardId));
+	} catch (err) {
+		console.error('Error deleting card', err);
+	}
+};
+
 
 	const cardList = cards.map(card => (
 		<div

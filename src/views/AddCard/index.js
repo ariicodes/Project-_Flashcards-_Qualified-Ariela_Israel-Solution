@@ -23,8 +23,8 @@ function AddCard({ deck, handleCardCreation }) {
 
 			setCardFront('');
 			setCardBack('');
-		} catch (error) {
-			console.error('Error adding new card:', error);
+		} catch (err) {
+			console.error('Error adding new card:', err);
 		}
 	};
 

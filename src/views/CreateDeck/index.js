@@ -24,8 +24,8 @@ function CreateDeck({ history, handleDeckCreation }) {
 			handleDeckCreation(createDeck);
 
 			history.push(`/decks/${createdDeck.id}`);
-		} catch (error) {
-			console.error('Error adding new deck:', error);
+		} catch (err) {
+			console.error('Error adding new deck:', err);
 		}
 	};
 

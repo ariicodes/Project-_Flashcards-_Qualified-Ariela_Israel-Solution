@@ -29,8 +29,8 @@ function EditCard({ deck, handleCardEdit }) {
 			await updateCard(card);
 			handleCardEdit();
 			history.push(`/decks/${deckId}`);
-		} catch (error) {
-			console.error('Error editing card:', error);
+		} catch (err) {
+			console.error('Error editing card:', err);
 		}
 	};
 
