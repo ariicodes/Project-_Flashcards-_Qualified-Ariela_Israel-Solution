@@ -21,7 +21,7 @@ function CreateDeck({ history, handleDeckCreation }) {
 
 			const createdDeck = await createDeck(newDeck);
 
-			handleDeckCreation(createDeck)
+			handleDeckCreation(createDeck);
 
 			history.push(`/decks/${createdDeck.id}`);
 		} catch (error) {
