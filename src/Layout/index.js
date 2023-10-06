@@ -75,7 +75,7 @@ function Layout() {
 							handleCardCreation={handleCardCreation}
 						/>
 					</Route>
-					<Route path='/'>
+					<Route exact path='/'>
 						<Home
 							decks={decks}
 							cards={cards}
