@@ -5,7 +5,6 @@ import { createDeck } from '../../utils/api';
 function CreateDeck({ history, handleDeckCreation }) {
 	const [deckName, setDeckName] = useState('');
 	const [deckDescription, setDeckDescription] = useState('');
-	const [isDeckRendered, setIsDeckRendered] = useState(false);
 
 	useEffect(() => {
 		return () => {};
@@ -25,10 +24,6 @@ function CreateDeck({ history, handleDeckCreation }) {
 			handleDeckCreation(createDeck)
 
 			history.push(`/decks/${createdDeck.id}`);
-			setIsDeckRendered(true);
-
-			setDeckName('');
-			setDeckDescription('');
 		} catch (error) {
 			console.error('Error adding new deck:', error);
 		}
@@ -36,7 +31,7 @@ function CreateDeck({ history, handleDeckCreation }) {
 
 	return (
 		<>
-			<Breadcrumb deckName={isDeckRendered ? deckName : 'Create Deck'} />
+			<Breadcrumb deckName={'Create Deck'} />
 			<div>
 				<h1>Create Deck</h1>
 				<form onSubmit={submitDeckHandler}>
