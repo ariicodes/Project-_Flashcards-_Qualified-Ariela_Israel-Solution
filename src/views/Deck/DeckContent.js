@@ -42,6 +42,7 @@ function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 			<CardList
 				cards={cards}
 				setCards={setCards}
+				deckId={deckId}
 			/>
 		</>
 	);
