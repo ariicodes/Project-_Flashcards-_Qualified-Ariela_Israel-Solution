@@ -44,7 +44,7 @@ function Study() {
 	};
 
 	return (
-		<>
+		<div>
 			<Breadcrumb
 				deckId={deckId}
 				deckName={deck.name}
@@ -62,7 +62,7 @@ function Study() {
 					handleNextCard={handleNextCard}
 				/>
 			)}
-		</>
+		</div>
 	);
 }
 

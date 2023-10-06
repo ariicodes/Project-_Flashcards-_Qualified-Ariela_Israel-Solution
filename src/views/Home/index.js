@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Home({ decks, cards, handleDeckDelete }) {
 	return (
-		<>
+		<div>
 			<Link
 				to='/decks/new'
 				className='btn btn-secondary mb-2'
@@ -16,7 +16,7 @@ function Home({ decks, cards, handleDeckDelete }) {
 				cards={cards}
 				handleDeckDelete={handleDeckDelete}
 			/>
-		</>
+		</div>
 	);
 }
 

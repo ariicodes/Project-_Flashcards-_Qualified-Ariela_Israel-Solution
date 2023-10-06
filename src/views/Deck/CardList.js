@@ -49,10 +49,10 @@ function CardList({ cards, setCards, deckId }) {
 	));
 
 	return (
-		<>
+		<div>
 			<h3>Cards</h3>
 			{cardList}
-		</>
+		</div>
 	);
 }
 

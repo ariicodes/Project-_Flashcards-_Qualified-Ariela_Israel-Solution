@@ -37,7 +37,7 @@ function Deck({ handleDeckDelete, handleCardCreation }) {
 	};
 
 	return (
-		<>
+		<div>
 			<Switch>
 				<Route path='/decks/:deckId/edit'>
 					<EditDeck handleDeckEdit={handleDeckEdit} />
@@ -64,7 +64,7 @@ function Deck({ handleDeckDelete, handleCardCreation }) {
 					/>
 				</Route>
 			</Switch>
-		</>
+		</div>
 	);
 }
 

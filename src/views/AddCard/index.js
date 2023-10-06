@@ -29,7 +29,7 @@ function AddCard({ deck, handleCardCreation }) {
 	};
 
 	return (
-		<>
+		<div>
 			<ThreeItemBreadcrumb
 				deckId={deckId}
 				deckName={deck.name}
@@ -81,7 +81,7 @@ function AddCard({ deck, handleCardCreation }) {
 					</div>
 				</form>
 			</div>
-		</>
+		</div>
 	);
 }
 

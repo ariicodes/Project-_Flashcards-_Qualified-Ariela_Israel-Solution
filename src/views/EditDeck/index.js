@@ -33,7 +33,7 @@ function EditDeck({ handleDeckEdit }) {
 	};
 
 	return (
-		<>
+		<div>
 			<ThreeItemBreadcrumb
 				deckId={deckId}
 				deckName={deck.name}
@@ -78,7 +78,7 @@ function EditDeck({ handleDeckEdit }) {
 					</button>
 				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 

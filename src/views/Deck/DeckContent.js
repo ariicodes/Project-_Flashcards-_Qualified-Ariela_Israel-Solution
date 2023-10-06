@@ -5,7 +5,7 @@ import CardList from './CardList';
 
 function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 	return (
-		<>
+		<div>
 			<TwoItemBreadcrumb deckName={deck.name} />
 			<div className='mb-4'>
 				<h4>{deck.name}</h4>
@@ -44,7 +44,7 @@ function DeckContent({ deck, cards, setCards, deckId, handleDeckDelete }) {
 				setCards={setCards}
 				deckId={deckId}
 			/>
-		</>
+		</div>
 	);
 }
 

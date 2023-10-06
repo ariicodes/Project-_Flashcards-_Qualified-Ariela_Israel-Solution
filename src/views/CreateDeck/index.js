@@ -30,7 +30,7 @@ function CreateDeck({ history, handleDeckCreation }) {
 	};
 
 	return (
-		<>
+		<div>
 			<Breadcrumb deckName={'Create Deck'} />
 			<div>
 				<h1>Create Deck</h1>
@@ -73,7 +73,7 @@ function CreateDeck({ history, handleDeckCreation }) {
 					</div>
 				</form>
 			</div>
-		</>
+		</div>
 	);
 }
 

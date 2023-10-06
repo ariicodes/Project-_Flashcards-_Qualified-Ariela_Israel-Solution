@@ -35,7 +35,7 @@ function EditCard({ deck, handleCardEdit }) {
 	};
 
 	return (
-		<>
+		<div>
 			<ThreeItemBreadcrumb
 				deckId={deckId}
 				deckName={`Deck ${deck.name}`}
@@ -89,7 +89,7 @@ function EditCard({ deck, handleCardEdit }) {
 					</div>
 				</form>
 			</div>
-		</>
+		</div>
 	);
 }
 
