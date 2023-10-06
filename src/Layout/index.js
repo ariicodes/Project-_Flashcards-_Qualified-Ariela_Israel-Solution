@@ -3,10 +3,10 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from './Header';
 import NotFound from './NotFound';
 import Home from '../views/Home';
-import axios from 'axios';
 import Study from '../views/Study';
 import CreateDeck from '../views/CreateDeck';
 import Deck from '../views/Deck';
+import { listDecks } from '../utils/api';
 
 function Layout() {
 	const [cards, setCards] = useState([]);
@@ -16,11 +16,8 @@ function Layout() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res1 = await axios.get('http://localhost:8080/cards');
-				setCards(res1.data);
-
-				const res2 = await axios.get('http://localhost:8080/decks');
-				setDecks(res2.data);
+				const res = await listDecks();
+				setDecks(res);
 			} catch (err) {
 				console.error('Error fetching data:', err);
 			}
@@ -36,11 +33,13 @@ function Layout() {
 
 		if (confirmed) {
 			try {
-				await axios.delete(`http://localhost:8080/decks/${deckId}`);
+				await fetch(`http://localhost:8080/decks/${deckId}`, {
+					method: 'DELETE',
+				});
 				setDecks(prevDecks => prevDecks.filter(deck => deck.id !== deckId));
 				history.push('/');
 			} catch (error) {
-				console.error('Error deleting deck:', error);
+				console.log('Error deleting deck:', error);
 			}
 		}
 	};
@@ -75,7 +74,10 @@ function Layout() {
 							handleCardCreation={handleCardCreation}
 						/>
 					</Route>
-					<Route exact path='/'>
+					<Route
+						exact
+						path='/'
+					>
 						<Home
 							decks={decks}
 							cards={cards}
