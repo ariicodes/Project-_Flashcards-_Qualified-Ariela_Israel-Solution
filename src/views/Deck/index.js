@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, useParams } from 'react-router-dom';
-import { readDeck } from '../../utils/api';
+import { readCard, readDeck } from '../../utils/api';
 import DeckContent from './DeckContent';
 import EditDeck from '../EditDeck';
 import AddCard from '../AddCard';
+import EditCard from '../EditCard';
 
 function Deck({ handleDeckDelete, handleCardCreation }) {
-	const { deckId } = useParams();
+	const { deckId, cardId } = useParams();
 	const [deck, setDeck] = useState({});
 	const [cards, setCards] = useState([]);
 
@@ -27,6 +28,14 @@ function Deck({ handleDeckDelete, handleCardCreation }) {
 			.catch(err => console.log(err));
 	};
 
+	const handleCardEdit = () => {
+		readCard(cardId)
+			.then(res => {
+				setCards(res);
+			})
+			.catch(err => console.log(err));
+	};
+
 	return (
 		<>
 			<Switch>
@@ -37,6 +46,12 @@ function Deck({ handleDeckDelete, handleCardCreation }) {
 					<AddCard
 						deck={deck}
 						handleCardCreation={handleCardCreation}
+					/>
+				</Route>
+				<Route path={`/decks/:deckId/cards/:cardId/edit`}>
+					<EditCard
+						deck={deck}
+						handleCardEdit={handleCardEdit}
 					/>
 				</Route>
 				<Route>
