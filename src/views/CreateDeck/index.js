@@ -1,27 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Breadcrumb from '../../common/TwoItemBreadcrumb';
 import { createDeck } from '../../utils/api';
+import CustomForm from '../../common/CustomForm';
 
 function CreateDeck({ history, handleDeckCreation }) {
-	const [deckName, setDeckName] = useState('');
-	const [deckDescription, setDeckDescription] = useState('');
 
-	useEffect(() => {
-		return () => {};
-	}, []);
+	const deckFields = [
+		{
+			label: 'Name',
+			id: 'deck-name',
+			name: 'deckName',
+			placeholder: 'Deck Name',
+		},
+		{
+			label: 'Description',
+			id: 'deck-description',
+			name: 'deckDescription',
+			type: 'textarea',
+			placeholder: 'Brief description of deck',
+		},
+	];
 
-	const submitDeckHandler = async e => {
-		e.preventDefault();
-
+	const submitDeckHandler = async formData => {
 		try {
 			const newDeck = {
-				name: deckName,
-				description: deckDescription,
+				name: formData.deckName,
+				description: formData.deckDescription,
 			};
 
 			const createdDeck = await createDeck(newDeck);
 
-			handleDeckCreation(createDeck);
+			handleDeckCreation(createdDeck);
 
 			history.push(`/decks/${createdDeck.id}`);
 		} catch (err) {
@@ -34,44 +43,10 @@ function CreateDeck({ history, handleDeckCreation }) {
 			<Breadcrumb deckName={'Create Deck'} />
 			<div>
 				<h1>Create Deck</h1>
-				<form onSubmit={submitDeckHandler}>
-					<div className='mb-3'>
-						<label
-							htmlFor='deck-name'
-							className='form-label'
-						>
-							Name
-						</label>
-						<input
-							type='text'
-							className='form-control'
-							id='deck-name'
-							placeholder='Deck Name'
-							value={deckName}
-							onChange={e => setDeckName(e.target.value)}
-						/>
-					</div>
-					<div className='mb-3'>
-						<label
-							htmlFor='deck-description'
-							className='form-label'
-						>
-							Description
-						</label>
-						<textarea
-							className='form-control'
-							id='deck-description'
-							rows='4'
-							placeholder='Brief description of deck'
-							value={deckDescription}
-							onChange={e => setDeckDescription(e.target.value)}
-						></textarea>
-					</div>
-					<div>
-						<button className='btn btn-secondary btn-1'>Cancel</button>
-						<button className='btn btn-primary'>Submit</button>
-					</div>
-				</form>
+				<CustomForm
+					onSubmit={submitDeckHandler}
+					fields={deckFields}
+				/>
 			</div>
 		</div>
 	);
