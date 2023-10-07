@@ -3,7 +3,7 @@ import ThreeItemBreadcrumb from '../../common/ThreeItemBreadcrumb';
 import { useParams, useHistory } from 'react-router-dom';
 import { readCard, updateCard } from '../../utils/api';
 
-function EditCard({ deck, handleCardEdit }) {
+function EditCard({ deck }) {
 	const { deckId, cardId } = useParams();
 	const [card, setCard] = useState({ front: '', back: '' });
 	const history = useHistory();
@@ -27,7 +27,10 @@ function EditCard({ deck, handleCardEdit }) {
 		e.preventDefault();
 		try {
 			await updateCard(card);
-			handleCardEdit();
+
+			const updatedCard = await readCard(cardId);
+			setCard(updatedCard);
+
 			history.push(`/decks/${deckId}`);
 		} catch (err) {
 			console.error('Error editing card:', err);
