@@ -1,44 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ThreeItemBreadcrumb from '../../common/ThreeItemBreadcrumb';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { createCard } from '../../utils/api';
-import CustomForm from '../../common/CustomForm';
 
 function AddCard({ deck, handleCardCreation }) {
 	const { deckId } = useParams();
+	const [cardFront, setCardFront] = useState();
+	const [cardBack, setCardBack] = useState();
 
-	const cardFields = [
-		{
-			label: 'Front',
-			id: 'card-front',
-			name: 'cardFront',
-			type: 'textarea',
-			placeholder: 'Front side of card',
-		},
-		{
-			label: 'Back',
-			id: 'card-back',
-			name: 'cardBack',
-			type: 'textarea',
-			placeholder: 'Back side of card',
-		},
-	];
-
-	const submitCardHandler = async formData => {
+	const submitCardHandler = async e => {
+		e.preventDefault();
 		try {
 			const newCard = {
-				front: formData.cardFront,
-				back: formData.cardBack,
+				front: cardFront,
+				back: cardBack,
 			};
 
 			await createCard(deckId, newCard);
 
-			handleCardCreation(newCard);
+			handleCardCreation(createCard);
+
+			setCardFront('');
+			setCardBack('');
 		} catch (err) {
 			console.error('Error adding new card:', err);
 		}
 	};
-
 	return (
 		<div>
 			<ThreeItemBreadcrumb
@@ -48,13 +35,51 @@ function AddCard({ deck, handleCardCreation }) {
 			/>
 			<div>
 				<h1>{`${deck.name}: Add Card`}</h1>
-				<CustomForm
-					onSubmit={submitCardHandler}
-					fields={cardFields}
-				/>
+				<form onSubmit={submitCardHandler}>
+					<div className='mb-3'>
+						<label
+							htmlFor='card-front'
+							className='form-label'
+						>
+							Front
+						</label>
+						<textarea
+							className='form-control'
+							id='card-front'
+							rows='2'
+							placeholder='Front side of card'
+							value={cardFront}
+							onChange={e => setCardFront(e.target.value)}
+						></textarea>
+					</div>
+					<div className='mb-3'>
+						<label
+							htmlFor='card-back'
+							className='form-label'
+						>
+							Back
+						</label>
+						<textarea
+							className='form-control'
+							id='card-back'
+							rows='2'
+							placeholder='Back side of card'
+							value={cardBack}
+							onChange={e => setCardBack(e.target.value)}
+						></textarea>
+					</div>
+					<div>
+						<Link
+							to={`/decks/${deckId}`}
+							className='btn btn-secondary btn-1'
+						>
+							Cancel
+						</Link>
+						<button className='btn btn-primary'>Submit</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
 }
-
 export default AddCard;
