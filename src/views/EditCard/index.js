@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ThreeItemBreadcrumb from '../../common/ThreeItemBreadcrumb';
 import { useParams, useHistory } from 'react-router-dom';
 import { readCard, updateCard } from '../../utils/api';
+import CardForm from '../../common/CardForm';
 
 function EditCard({ deck }) {
 	const { deckId, cardId } = useParams();
@@ -46,51 +47,13 @@ function EditCard({ deck }) {
 			/>
 			<div>
 				<h1>{`${deck.name}: Edit Card`}</h1>
-				<form onSubmit={submitCardHandler}>
-					<div className='mb-3'>
-						<label
-							htmlFor='card-front'
-							className='form-label'
-						>
-							Front
-						</label>
-						<textarea
-							className='form-control'
-							id='card-front'
-							rows='2'
-							placeholder='Front side of card'
-							name='front'
-							value={card.front}
-							onChange={handleInputChange}
-						></textarea>
-					</div>
-					<div className='mb-3'>
-						<label
-							htmlFor='card-back'
-							className='form-label'
-						>
-							Back
-						</label>
-						<textarea
-							className='form-control'
-							id='card-back'
-							rows='2'
-							placeholder='Back side of card'
-							name='back'
-							value={card.back}
-							onChange={handleInputChange}
-						></textarea>
-					</div>
-					<div>
-						<button
-							onClick={() => history.push(`/decks/${deckId}`)}
-							className='btn btn-secondary btn-1'
-						>
-							Cancel
-						</button>
-						<button className='btn btn-primary'>Submit</button>
-					</div>
-				</form>
+				<CardForm
+					cardFront={card.front}
+					cardBack={card.back}
+					submitCardHandler={submitCardHandler}
+					handleFrontChange={handleInputChange}
+					handleBackChange={handleInputChange}
+				/>
 			</div>
 		</div>
 	);
